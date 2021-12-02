@@ -600,7 +600,7 @@ function request(name){
 	}else {
 		xhttp = new ActiveXObject("Microsoft.XMLHTTP");
 	}
-	xhttp.open("POST", name, true);
+	xhttp.open("GET", name, true);
 	xhttp.send();
 	return xhttp;
 }
