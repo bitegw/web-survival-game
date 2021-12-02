@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Hollywood Stranded</title>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<script language="Javascript" type="text/javascript" src="clouds.js"></script>
+	<script language="Javascript" type="text/javascript" src="logic.js"></script>
+	<script language="Javascript" type="text/javascript" src="FileSaver.js"></script>
+</head>
+<body onload="makeClouds(); init();" onresize="resize();">
+
+	<div id="wrapper">
+
+		<div id="top">
+			<div id="stars"></div>
+			<div id="title">
+			<h4 align=center class="pulses">Hollywood Stranded v1.0</h4>
+			</div>
+		</div>
+
+		<div id="middle">
+			<canvas id="sea"></canvas>
+			<div id="location">
+				<div id="island">
+					<a href="#" id="palms" class="island-object" onclick="harvest(this);"></a>
+					<a href="#" id="bush-1" class="island-object" onclick="harvest(this);"></a>
+					<a href="#" id="bush-2" class="island-object" onclick="harvest(this);"></a>
+					<a href="#" id="rocks" class="island-object" onclick="harvest(this);"></a>
+					<a href="#" id="crabs" class="island-object" onclick="harvest(this);"></a>
+					<div id="survivors" class="flex-spread">
+						<img class="survivor-busy" src="img/barrel.png">
+						<img class="survivor-idle" src="img/barrel.png">
+						<img class="survivor-idle" src="img/barrel.png">
+						<img class="survivor-idle" src="img/barrel.png">
+					</div>
+					<div class="center"><p id="actions">Actions left: 12</p></div>
+				</div>
+			</div>
+
+			<div id="left-panel">
+				<div id="resource-panel" class="menu">
+					<h3>Resources:</h3>
+					<div id="resources"></div>
+				</div>
+				<div id="crafting-panel" class="menu">
+					<h3>Crafting:</h3>
+					<div id="crafting"></div>
+				</div>
+			</div>
+
+			<div id="objective-panel" class="menu">
+				<h3>Objectives:</h3>
+				<div id="objectives"></div>
+			</div>
+		</div>
+
+		<div id="bottom" class="center">
+			<div>
+				<a href="#" onclick="newGame(this);">New Game</a>
+			</div>
+			<div>
+				<a href="#" onclick="saveDataToCookie(this);">Save</a> / 
+				<a href="#" onclick="toggleMenu('text-save');">Export</a>
+			</div>
+			<div>
+				<a href="#" onclick="loadDataFromCookie(this);">Load</a> / 
+				<a href="#" onclick="toggleMenu('text-load');">Import</a>
+			</div>
+		</div>
+	</div>
+
+	<div id="event" class="menu flex-column-centered">
+		<img src="img/event_placeholder.png" class="menu-image">
+		<h2 class="menu-title fonts-main">Event name:</h2>
+		<p class="menu-desc fonts-main">This is the event description. A summary of the event can be found here, based on which, you will be presented with two or more options to pick from.</p>
+		<div class="position-bottom">
+			<div class="menu-options flex-spread">
+				<a href="#" class="menu-button">Option 1</a>
+				<a href="#" class="menu-button">Option 1</a>
+				<a href="#" class="menu-button">Option 1</a>
+			</div>
+		</div>
+	</div>
+
+	<div id="text-save" class="menu popup">
+		<div class="content">
+			<h2 class="menu-title fonts-main">Save data:</h2>
+			<button type="button" class="quit" onclick="closeMenu('text-save');">+</button>
+			<div class="text-box">
+				<textarea id="data-display" readonly class="area">FDGHDFHFH3456km6l4k5mn6lk5k645lk45lk645l64l6l4HFH3456km6l4k5mn6lk5k645lkHFH3456km6l4k5mn6lk5k645lkHFH3456km6l4k5mn6lk5k645lkHFH3456km6l4k5mn6lk5k645lkHFH3456km6l4k5mn6lk5k645lkHFH3456km6l4k5mn6lk5k645lkHFH3456km6l4k5mn6lk5k645lk</textarea>
+			</div>
+			<div class="center popup-buttons">
+				<a class="center" href="#" onclick="copyDataString();">Copy</a>
+				<a class="center" href="#" onclick="saveDataToFile(this);">Export to file</a>
+			</div>
+		</div>
+	</div>
+
+	<div id="text-load" class="menu popup">
+		<div class="content">
+			<h2 class="menu-title fonts-main">Load data:</h2>
+			<button type="button" class="quit" onclick="closeMenu('text-load');">+</button>
+			<div class="text-box">
+				<textarea id="text-data" class="area"></textarea>
+			</div>
+			<div class="center popup-buttons">
+				<a class="center" href="#" onclick="loadDataFromString();">Import</a>
+			</div>
+		</div>
+	</div>
+
+	<div id="victory" class="menu popup center full">
+		<h1>Victory!</h1>
+		<p>You've survived the island.</p>
+	</div>
+
+	<div id="loss" class="menu popup center full">
+		<h1>You lost!</h1>
+		<p>You don't have enough food to survive.</p>
+	</div>
+
+</body>
+</html>
